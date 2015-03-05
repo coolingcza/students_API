@@ -1,13 +1,15 @@
 require "sinatra"
 require 'json'
 require "sqlite3"
-require 'pry'
+require "pry"
 
 DATABASE = SQLite3::Database.new("students.db")
 DATABASE.results_as_hash = true
 
-require_relative "student.rb"
+require_relative "student"
 
+
+binding.pry
 
 get "/" do
   erb :homepage
