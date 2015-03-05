@@ -9,7 +9,7 @@ DATABASE.results_as_hash = true
 require_relative "student"
 
 
-binding.pry
+
 
 get "/" do
   erb :homepage
@@ -48,6 +48,40 @@ get "/students/:id" do
 
   student_hash = student.to_hash
   student_hash.to_json
+end
+
+get "/students/edit/id/:id/name/:name/age/:age/github/:github" do
+  
+  student = Student.find(params[:id])
+
+  student.name = params[:name]
+  student.age = params[:age]
+  student.github = params[:github]
+
+  student.save
+  
+  student_hash = student.to_hash
+  student_hash.to_json
+end
+
+get "/students/new/name/:name/age/:age/github/:github" do
+  student = Student.new({"name"=>params[:name],"age"=>params[:age],"github"=>params[:github]})
+  student.insert
+  
+  students = Student.all
+  
+  students_hash = students.map {|s| s.to_hash}
+  students_hash.to_json
+end
+
+get "/students/delete/id/:id" do
+  student = Student.find(params[:id])
+  student.delete
+  
+  students = Student.all
+  
+  students_hash = students.map {|s| s.to_hash}
+  students_hash.to_json
 end
 
 # Afternoon Assignment:
