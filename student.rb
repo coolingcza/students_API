@@ -1,5 +1,5 @@
 class Student
-  attr_reader :id, :age, :name, :github
+  attr_accessor :id, :age, :name, :github
   
   def initialize(options)
     @id = options["id"]
@@ -121,6 +121,7 @@ class Student
     # name = 'Sumeet', age = 75, hometown = 'San Diego'
 
     DATABASE.execute("UPDATE students SET #{query_string} WHERE id = #{id}")
+    return self
   end
   
   # Public: delete
