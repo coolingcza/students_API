@@ -15,21 +15,22 @@ get "/" do
   erb :homepage
 end
 
+
 get "/students" do
   students = Student.all
   
-  students.each{ |s| s.github = s.github_link }
-  
-  binding.pry
+  students.each { |s| s.github = s.github_link }
   
   students_hash = students.map {|s| s.to_hash}
+  
+  students_hash.each do |h|
+    student = Student.find(h[:id])
+    h[:can_drink] = student.can_drink?
+    h[:is_wise] = student.ultra_wise?
+  end
+  
   students_hash.to_json
 end
-
-# get "students/new" do
-#   student = Student.new(params)
-#   student.insert
-# end
 
 
 get "/students/can_drink/:id" do
@@ -38,6 +39,7 @@ get "/students/can_drink/:id" do
   student_hash["can_drink"] = student.can_drink?
   student_hash.to_json 
 end
+
 
 get "/students/ultra_wise/:id" do
   student = Student.find(params[:id])
@@ -54,6 +56,7 @@ get "/students/:id" do
   student_hash.to_json
 end
 
+
 get "/students/edit/id/:id/name/:name/age/:age/github/:github" do
   
   student = Student.find(params[:id])
@@ -68,6 +71,7 @@ get "/students/edit/id/:id/name/:name/age/:age/github/:github" do
   student_hash.to_json
 end
 
+
 get "/students/new/name/:name/age/:age/github/:github" do
   student = Student.new({"name"=>params[:name],"age"=>params[:age],"github"=>params[:github]})
   student.insert
@@ -77,6 +81,7 @@ get "/students/new/name/:name/age/:age/github/:github" do
   students_hash = students.map {|s| s.to_hash}
   students_hash.to_json
 end
+
 
 get "/students/delete/id/:id" do
   student = Student.find(params[:id])
