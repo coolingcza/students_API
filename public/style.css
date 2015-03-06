@@ -16,14 +16,14 @@ div.container{
 	width: 100%;
 }
 
-ul {
+div.container ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: block;
 }
 
-ul li{
+div.container ul li{
   width: 33%;
   margin: 0 auto;
   display: inline;

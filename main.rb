@@ -49,15 +49,7 @@ get "/students/ultra_wise/:id" do
 end
 
 
-get "/students/:id" do
-  student = Student.find(params[:id])
-
-  student_hash = student.to_hash
-  student_hash.to_json
-end
-
-
-get "/students/edit/id/:id/name/:name/age/:age/github/:github" do
+get "/students/edit" do #/id/:id/name/:name/age/:age/github/:github" do
   
   student = Student.find(params[:id])
 
@@ -72,7 +64,8 @@ get "/students/edit/id/:id/name/:name/age/:age/github/:github" do
 end
 
 
-get "/students/new/name/:name/age/:age/github/:github" do
+post "/students/new" do #/name/:name/age/:age/github/:github" do
+  binding.pry
   student = Student.new({"name"=>params[:name],"age"=>params[:age],"github"=>params[:github]})
   student.insert
   
@@ -80,6 +73,15 @@ get "/students/new/name/:name/age/:age/github/:github" do
   
   students_hash = students.map {|s| s.to_hash}
   students_hash.to_json
+end
+
+
+
+get "/students/:id" do
+  student = Student.find(params[:id])
+
+  student_hash = student.to_hash
+  student_hash.to_json
 end
 
 
