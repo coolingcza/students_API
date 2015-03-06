@@ -1,0 +1,31 @@
+button {
+  height: 3.5em;
+  width: 11em;
+  background-color: #CCCCFF;
+  border: 1px white;
+  border-radius: 3px;
+  margin: 5px auto 5px auto;
+}
+
+button:hover {
+  border: 2px #9999FF;
+}
+
+div.container{
+	overflow: hidden;
+	width: 100%;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+ul li{
+  width: 33%;
+  margin: 0 auto;
+  display: inline;
+  float: left;
+}

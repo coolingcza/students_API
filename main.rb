@@ -18,6 +18,10 @@ end
 get "/students" do
   students = Student.all
   
+  students.each{ |s| s.github = s.github_link }
+  
+  binding.pry
+  
   students_hash = students.map {|s| s.to_hash}
   students_hash.to_json
 end
