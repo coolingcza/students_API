@@ -9,7 +9,7 @@ class Student
   end
   
   def can_drink?
-    age >= 200
+    @age >= 200
   end
   
   def ultra_wise?

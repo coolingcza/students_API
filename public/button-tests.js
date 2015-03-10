@@ -43,7 +43,7 @@ window.onload = function(){
     form.addEventListener("submit", new_student_info);
     
     function new_student_info() {
-      var new_s_req = new XMLHttpRequest();
+      var new_s_req = new XMLHttpRequest;
       new_s_req.open("post", "/students/new");
 
       var formElement = document.getElementById("new_student_form");
